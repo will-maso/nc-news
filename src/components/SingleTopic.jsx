@@ -1,16 +1,17 @@
 import axios from "axios"
-import {useState, useEffect} from "react"
-
-const Articles = () => {
-    const [articles, setArticles] = useState([])
+import { useState, useEffect } from "react"
+import { useParams } from "react-router-dom"
+const SingleTopic = () => {
+const [articles, setArticles] = useState([])
+const {topic_slug} = useParams()
 
     useEffect(() => {
-        axios.get(`https://news-williammason.herokuapp.com/api/articles`).then((data) => {
+        axios.get(`https://news-williammason.herokuapp.com/api/articles/?topic=${topic_slug}`).then((data) => {
             setArticles(data.data.articles)
         }).catch((err) => {
-            console.log(err)
+            console.log(err.response)
         })
-    }, [])
+    }, [topic_slug])
     return (
         <main>
     <h2>Articles</h2>
@@ -25,4 +26,4 @@ const Articles = () => {
     )
 }
 
-export default Articles
+export default SingleTopic

@@ -1,6 +1,8 @@
 import "./App.css";
 import Articles from "./components/Articles";
-import Filter from "./components/Filter";
+import Nav from "./components/Nav";
+import { Routes, Route } from "react-router-dom";
+import SingleTopic from "./components/SingleTopic";
 
 function App() {
   return (
@@ -8,8 +10,11 @@ function App() {
       <header className="App-header">
         <h1>Nc - news</h1>
       </header>
-      <Filter />
-      <Articles />
+      <Nav />
+      <Routes>
+        <Route path="/" element={<Articles />}></Route>
+        <Route path="/:topic_slug" element={<SingleTopic />} />
+      </Routes>
     </div>
   );
 }
