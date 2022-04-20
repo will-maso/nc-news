@@ -14,7 +14,7 @@ function App() {
       </header>
       <Nav />
       <Routes>
-        <Route path="/articles" element={<Articles />}></Route>
+        <Route path="/" element={<Articles />}></Route>
         <Route path="/:topic_slug" element={<SingleTopic />} />
         <Route path="/articles/:article_id" element={<SingleArticle />} />
         <Route path="/articles/:article_id/comments" element={<Comments />} />

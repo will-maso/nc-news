@@ -1,7 +1,6 @@
 import {useParams} from "react-router-dom"
 import {useEffect, useState} from "react"
 import axios from "axios"
-import {Link} from "react-router-dom"
 
 const SingleArticle = () => {
     const [article, setArticle] = useState("")
@@ -14,10 +13,20 @@ const SingleArticle = () => {
             console.log(err.response)
         })
     }, [article_id])
+    const ClickHandler = () => {
+        axios.patch(`https://news-williammason.herokuapp.com/api/articles/${article_id}`, {
+            inc_votes: 1
+        }).then((data) => {
+            setArticle(data.data.article)
+        }).catch((err) => {
+            console.log(err.response)
+        })
+    }
     return (
     <section>
         <h2>{article.title} </h2>
         <h3>{article.author}</h3>
+        <h4>Votes: {article.votes} <button onClick={ClickHandler}>upVote</button></h4>
         <p>
             {article.body}
         </p>
