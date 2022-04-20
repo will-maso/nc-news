@@ -11,7 +11,6 @@ const SingleArticle = () => {
 
     useEffect(() => {
         axios.get(`https://news-williammason.herokuapp.com/api/articles/${article_id}`).then((data) => {
-            console.log(data.data.article)
             setArticle(data.data.article)
         }).catch((err) => {
             console.log(err.response)
