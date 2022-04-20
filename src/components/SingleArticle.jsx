@@ -19,14 +19,12 @@ const SingleArticle = () => {
     }, [article_id])
 
     const ClickHandler = () => {
-        if (clicked) {
-            return 
-        }
         setArticle((currArticle) => {
             return {...currArticle, votes: currArticle.votes +1 }
         })
         setClicked(true)
         setErr(null)
+
         axios.patch(`https://news-williammason.herokuapp.com/api/articles/${article_id}`, {
             inc_votes: 1
         }).then((data) => {
@@ -34,13 +32,13 @@ const SingleArticle = () => {
         }).catch((err) => {
             setArticle((currArticle) => {
             return {...currArticle, votes: currArticle.votes -1 }
-        })
+            })
             setErr("Something went wrong, please try again.")
             setClicked(false)
             console.log(err.response)
         })
     }
-
+    
     if(err) return <p>{err}</p>
 
     return (

@@ -5,17 +5,31 @@ import { Link } from "react-router-dom"
 const SingleTopic = () => {
 const [articles, setArticles] = useState([])
 const {topic_slug} = useParams()
+const [page, setPage] = useState(0)
 
     useEffect(() => {
-        axios.get(`https://news-williammason.herokuapp.com/api/articles/?topic=${topic_slug}`).then((data) => {
+        axios.get(`https://news-williammason.herokuapp.com/api/articles/?topic=${topic_slug}&&page=${page}`).then((data) => {
             setArticles(data.data.articles)
         }).catch((err) => {
             console.log(err.response)
         })
-    }, [topic_slug])
+    }, [topic_slug, page])
+    const nextHandler = () => {
+        setPage((currPage) => {
+            return currPage + 1
+        })
+    }
+    const prevHandler = () => {
+        setPage((currPage) => {
+            return currPage - 1
+        })
+    }
     return (
         <main>
     <h2 className="title">Articles</h2>
+    <p>Current Page: {page + 1}</p>
+    {page > 0 && <button onClick={prevHandler}>Previous Page</button>} 
+    {articles.length === 10 && <button onClick={nextHandler}>Next Page</button> }
     <ul>
         {articles.map((article) => {
             return (
