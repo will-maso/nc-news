@@ -1,6 +1,7 @@
 import {useParams} from "react-router-dom"
 import {useEffect, useState} from "react"
 import axios from "axios"
+import {Link} from "react-router-dom"
 
 const SingleArticle = () => {
     const [article, setArticle] = useState({})
@@ -50,7 +51,7 @@ const SingleArticle = () => {
         <p>
             {article.body}
         </p>
-        {/* <Link to={`/articles/${article_id}/comments`}>Comments</Link> */}
+        <Link to={`/articles/${article_id}/comments`}>Comments</Link>
     </section>
     )
 }
