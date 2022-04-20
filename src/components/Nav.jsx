@@ -14,7 +14,7 @@ const Nav = () => {
     return <section>
         <h2>Nav</h2>
         <nav>
-            <Link to="/">Home</Link>
+            <Link to="/articles">Home</Link>
             {topics.map((topic) => {
                 return <Link to={`/${topic.slug}`} key={topic.slug}>{topic.slug}</Link>
             })}

@@ -1,6 +1,7 @@
 import axios from "axios"
 import { useState, useEffect } from "react"
 import { useParams } from "react-router-dom"
+import { Link } from "react-router-dom"
 const SingleTopic = () => {
 const [articles, setArticles] = useState([])
 const {topic_slug} = useParams()
@@ -17,9 +18,13 @@ const {topic_slug} = useParams()
     <h2>Articles</h2>
     <ul>
         {articles.map((article) => {
-            return <li key={article.article_id}>
+            return (
+            <li key={article.article_id}>
+                <Link to={`/articles/${article.article_id}`}>
                 Topic: {article.topic}.  "{article.title}"
+                </Link>
             </li>
+            )
         })}
     </ul>
     </main>
