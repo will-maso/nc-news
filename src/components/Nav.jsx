@@ -12,7 +12,7 @@ const Nav = () => {
         })
     }, [])
     return <section>
-        <h2>Nav</h2>
+        <h2 className="title">Nav</h2>
         <nav>
             <Link to="/">Home</Link>
             {topics.map((topic) => {

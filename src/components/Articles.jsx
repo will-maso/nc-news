@@ -14,7 +14,7 @@ const Articles = () => {
     }, [])
     return (
         <main>
-    <h2>Articles</h2>
+    <h2 className="title">Articles</h2>
     <ul>
         {articles.map((article) => {
             return <li key={article.article_id}>

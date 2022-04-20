@@ -1,6 +1,7 @@
 import {useParams} from "react-router-dom"
 import {useEffect, useState} from "react"
 import axios from "axios"
+import Comments from "./Comments"
 
 const SingleArticle = () => {
     const [article, setArticle] = useState({})
@@ -44,13 +45,13 @@ const SingleArticle = () => {
 
     return (
     <section>
-        <h2>{article.title} </h2>
-        <h3>{article.author}</h3>
-        <h4>Votes: {article.votes} <button onClick={ClickHandler} disabled={clicked}>upVote</button></h4>
+        <h2 className="title">{article.title} </h2>
+        <h3 className="title">Author: {article.author}</h3>
+        <h4 className="title">Votes: {article.votes} </h4><button onClick={ClickHandler} disabled={clicked}>upVote</button>
         <p>
             {article.body}
         </p>
-        {/* <Link to={`/articles/${article_id}/comments`}>Comments</Link> */}
+        <Comments />
     </section>
     )
 }
