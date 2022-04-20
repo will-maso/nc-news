@@ -15,7 +15,7 @@ const {topic_slug} = useParams()
     }, [topic_slug])
     return (
         <main>
-    <h2>Articles</h2>
+    <h2 className="title">Articles</h2>
     <ul>
         {articles.map((article) => {
             return (

@@ -14,11 +14,11 @@ const Comments = () => {
         })
     }, [article_id])
     return <section>
-        <h3>Comments</h3>
+        <h3 className="title">Comments</h3>
         <ul>
             {comments.map((comment) => {
                 return <li key={comment.comment_id}>
-                    <h4>{comment.author}</h4>
+                    <h4 className="title">{comment.author}</h4>
                     {comment.body}
                     <br></br>
                     Votes: {comment.votes}
