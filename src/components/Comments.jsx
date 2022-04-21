@@ -51,7 +51,7 @@ const Comments = () => {
     const deleteHandler = (comment_id) => {
         let newComments = [...comments]
         for(let i = 0; i < newComments.length; i++) {
-            if(newComments[i].comment_id === comment_id) {
+            if(newComments[i].comment_id === comment_id && newComments[i].author === "jessjelly") {
                 newComments.splice(i, 1)
             }
         }
@@ -75,7 +75,7 @@ const Comments = () => {
                     <h4 className="title">{comment.author}</h4>
                     {comment.body}
                     <br></br>
-                    Votes: {comment.votes} <button onClick={() => deleteHandler(comment.comment_id)}>Delete Comment</button>
+                    Votes: {comment.votes} {comment.author === "jessjelly" && <button onClick={() => deleteHandler(comment.comment_id, comment.author)}>Delete Comment</button>}
                 </li>
             })}
         </ul>
