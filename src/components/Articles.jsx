@@ -53,10 +53,11 @@ const Articles = () => {
     <ul>
         {articles.map((article) => {
             return <li key={article.article_id}>
+                Topic: {article.topic}.  
                 <Link to={`/articles/${article.article_id}` } >
-                Topic: {article.topic}.  "{article.title}"
-                Comments: {article.comment_count}
+                "{article.title}"
                 </Link>
+                Comments: {article.comment_count}
             </li>
         })}
     </ul>
