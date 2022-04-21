@@ -8,11 +8,13 @@ const {topic_slug} = useParams()
 const [page, setPage] = useState(0)
 const [sortby, setSortby] = useState("created_at")
 const [orderby, setOrderby] = useState("desc")
+const [err, setErr] = useState(null)
 
     useEffect(() => {
         axios.get(`https://news-williammason.herokuapp.com/api/articles/?topic=${topic_slug}&&page=${page}&&sort_by=${sortby}&&order=${orderby}`).then((data) => {
             setArticles(data.data.articles)
         }).catch((err) => {
+            setErr(err.response.data)
             console.log(err.response)
         })
     }, [topic_slug, page, sortby, orderby])
@@ -32,7 +34,7 @@ const [orderby, setOrderby] = useState("desc")
     const orderHandler = (e) => {
         setOrderby(e.target.value)
     }
-
+    if(err) return <p>{err}</p>
     return (
         <main>
             <br></br>
@@ -54,9 +56,9 @@ const [orderby, setOrderby] = useState("desc")
     <ul>
         {articles.map((article) => {
             return (
-            <li key={article.article_id}>
+            <li key={article.article_id} >
                 Topic: {article.topic}.  
-                <Link to={`/articles/${article.article_id}`}>
+                <Link to={`/articles/${article.article_id}`} className="Link">
                 "{article.title}"
                 </Link>
                 Comments: {article.comment_count}

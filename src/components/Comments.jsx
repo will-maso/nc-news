@@ -1,11 +1,13 @@
 import axios from "axios"
-import {useEffect, useState} from "react"
+import {useContext, useEffect, useState} from "react"
 import {useParams} from "react-router-dom"
+import { UserContext } from "../contexts/User"
 
 const Comments = () => {
+    const {user} = useContext(UserContext)
     const [comments, setComments] = useState([])
     const [newComment, setNewComment] = useState({
-        username: "jessjelly",
+        username: user,
         body: ""
     })
     const [err, setErr] = useState(null)
@@ -21,26 +23,30 @@ const Comments = () => {
     }, [article_id])
 
     const submitHandler = (e) => {
-        setClicked(true)
-        e.preventDefault()
-        setComments([newComment, ...comments])
-        axios.post(`https://news-williammason.herokuapp.com/api/articles/${article_id}/comments`, newComment).then((response) => {
-            console.log(response.data.comment)
-            setComments([response.data.comment, ...comments])
-        }).catch((err) => {
-            setClicked(false)
-            setComments((currComments) => {
-                let newComments = [...currComments]
-                newComments.splice(0, 1);
-                return newComments
+        if (user) {
+            setClicked(true)
+            e.preventDefault()
+            setComments([newComment, ...comments])
+            axios.post(`https://news-williammason.herokuapp.com/api/articles/${article_id}/comments`, newComment).then((response) => {
+                console.log(response.data.comment)
+                setComments([response.data.comment, ...comments])
+            }).catch((err) => {
+                setClicked(false)
+                setComments((currComments) => {
+                    let newComments = [...currComments]
+                    newComments.splice(0, 1);
+                    return newComments
+                })
+                setErr("Something went wrong, please try again.")
+                console.log(err.response)
             })
-            setErr("Something went wrong, please try again.")
-            console.log(err.response)
+            setNewComment({
+            username: user,
+            body: ""
         })
-        setNewComment({
-        username: "jessjelly",
-        body: ""
-    })
+        } else {
+            setErr("Please login to comment")
+        }
     }
     const changeHandler = (e) => {
         setClicked(false)
@@ -49,18 +55,22 @@ const Comments = () => {
         })
     }
     const deleteHandler = (comment_id) => {
-        let newComments = [...comments]
-        for(let i = 0; i < newComments.length; i++) {
-            if(newComments[i].comment_id === comment_id && newComments[i].author === "jessjelly") {
-                newComments.splice(i, 1)
+        if (user) {
+            let newComments = [...comments]
+            for(let i = 0; i < newComments.length; i++) {
+                if(newComments[i].comment_id === comment_id && newComments[i].author === user) {
+                    newComments.splice(i, 1)
+                }
             }
+            setComments(newComments)
+            axios.delete(`https://news-williammason.herokuapp.com/api/comments/${comment_id}`)
+            .catch((err) => {
+                setErr("Something went wrong, please try again.")
+                console.log(err.response)
+            })
+        } else {
+            setErr("Please login to comment")
         }
-        setComments(newComments)
-        axios.delete(`https://news-williammason.herokuapp.com/api/comments/${comment_id}`)
-        .catch((err) => {
-            setErr("Something went wrong, please try again.")
-            console.log(err.response)
-        })
     }
     if (err) return <p>{err}</p>
     return <section>
@@ -75,7 +85,7 @@ const Comments = () => {
                     <h4 className="title">{comment.author}</h4>
                     {comment.body}
                     <br></br>
-                    Votes: {comment.votes} {comment.author === "jessjelly" && <button onClick={() => deleteHandler(comment.comment_id, comment.author)}>Delete Comment</button>}
+                    Votes: {comment.votes} {comment.author === user && <button onClick={() => deleteHandler(comment.comment_id, comment.author)}>Delete Comment</button>}
                 </li>
             })}
         </ul>

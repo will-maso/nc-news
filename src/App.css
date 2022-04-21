@@ -1,5 +1,36 @@
-.App {
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+.App__light {
+  min-height: 100vh;
+  padding: 0;
   text-align: center;
+  background-color: greenyellow;
+  color: black;
+}
+.App__light button {
+  background-color: lime;
+  border-radius: 8px;
+  padding: 5px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  border: 1px solid black;
+}
+.App__light select {
+  background-color: lime;
+  border-radius: 8px;
+  padding: 5px;
+  margin-right: 5px;
+  border: 1px solid black;
+}
+.App__light .Link {
+  color: blue;
+  margin-right: 10px;
+}
+.App__light Header {
+  font-size: 25px;
 }
 ul{
   list-style-type: none;
@@ -14,4 +45,32 @@ ul li{
 }
 .title{
   text-decoration: underline;
+}
+.App__dark {
+  background-color: grey;
+  color: navy;
+  min-height: 100vh;
+  text-align: center;
+}
+.App__dark button {
+  background-color: navy;
+  border-radius: 8px;
+  padding: 5px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  border: 1px solid black;
+}
+.App__dark select {
+  background-color: navy;
+  border-radius: 8px;
+  padding: 5px;
+  margin-right: 5px;
+  border: 1px solid black;
+}
+.App__dark .Link {
+  color: purple;
+  margin-right: 10px;
+}
+.App__dark Header {
+  font-size: 25px;
 }
