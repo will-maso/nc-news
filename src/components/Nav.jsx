@@ -13,13 +13,17 @@ const Nav = () => {
         }).catch((err) => {
             console.log(err)
         })
-    }, [])
+    }, [user])
+    const logoutHandler = () => {
+        setUser("")
+        localStorage.setItem("user", "")
+    }
     return <section>
-        <nav>
-            {!user ? <Link to="/Login" className="Link">Login</Link> : <button onClick={() => setUser(null)}>Logout</button>}
-            <Link to="/" className="Link">Home</Link>
+        <nav id="nav">
+            {!localStorage.getItem("user") ? <Link to="/Login" className="Link">login</Link> : <button onClick={logoutHandler}>Logout</button>}
+            <br></br>
             {topics.map((topic) => {
-                return <Link to={`/${topic.slug}`} key={topic.slug} className="Link">{topic.slug}</Link> 
+                return <Link to={`/${topic.slug}`} key={topic.slug} className="Link" >{topic.slug}</Link> 
             })}
         </nav>
     </section>

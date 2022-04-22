@@ -2,16 +2,17 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-family: sans-serif;
 }
 .App__light {
   min-height: 100vh;
   padding: 0;
   text-align: center;
-  background-color: greenyellow;
+  background-color: white;
   color: black;
 }
 .App__light button {
-  background-color: lime;
+  background-color: white;
   border-radius: 8px;
   padding: 5px;
   margin-top: 5px;
@@ -19,14 +20,14 @@
   border: 1px solid black;
 }
 .App__light select {
-  background-color: lime;
+  background-color: white;
   border-radius: 8px;
   padding: 5px;
   margin-right: 5px;
   border: 1px solid black;
 }
 .App__light .Link {
-  color: blue;
+  color: purple;
   margin-right: 10px;
 }
 .App__light Header {
@@ -38,39 +39,73 @@ ul{
 }
 ul li{
   display: table;
+  max-width: 80%;
   border: 1px solid black;
+  border-radius: 5px;
+  padding: 5px 10px;
+  margin:10px auto 0px auto;
+}
+.App__dark ul li{
+  display: table;
+  max-width: 80%;
+  border: 1px solid white;
   border-radius: 5px;
   padding: 5px 10px;
   margin:10px auto 0px auto;
 }
 .title{
   text-decoration: underline;
+  text-transform: capitalize;
+  margin-bottom: 10px;
 }
 .App__dark {
-  background-color: grey;
-  color: navy;
+  background-color: black;
+  color: white;
   min-height: 100vh;
   text-align: center;
 }
 .App__dark button {
-  background-color: navy;
+  background-color: black;
   border-radius: 8px;
   padding: 5px;
   margin-top: 5px;
   margin-bottom: 5px;
-  border: 1px solid black;
+  border: 1px solid white;
+  color: white;
 }
 .App__dark select {
-  background-color: navy;
+  background-color: black;
+  color: white;
   border-radius: 8px;
   padding: 5px;
   margin-right: 5px;
-  border: 1px solid black;
+  border: 1px solid white;
 }
 .App__dark .Link {
-  color: purple;
+  color: cyan;
   margin-right: 10px;
 }
 .App__dark Header {
   font-size: 25px;
 }
+.Article {
+  text-align: left;
+  max-width: 40%;
+  margin: auto;
+}
+#Header {
+  text-transform: capitalize; 
+  font-size: 30px;
+}
+#nav {
+  margin: 5px;
+}
+@media (max-width: 850px) {
+  .Article {
+    max-width: 80%;
+  }
+  #Header {
+    font-size: 20px;
+  }
+}
+

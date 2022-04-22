@@ -8,7 +8,6 @@ const Articles = () => {
     const [sortby, setSortby] = useState("created_at")
     const [orderby, setOrderby] = useState("desc")
     const [err, setErr] = useState(null)
-    
     useEffect(() => {
         axios.get(`https://news-williammason.herokuapp.com/api/articles?page=${page}&&sort_by=${sortby}&&order=${orderby}`).then((data) => {
             setArticles(data.data.articles)
@@ -53,9 +52,9 @@ const Articles = () => {
     <p>Current Page: {page + 1}</p>
     {page > 0 && <button onClick={prevHandler}>Previous Page</button>} 
     {articles.length === 10 && <button onClick={nextHandler}>Next Page</button> }
-    <ul>
+    <ul className="List">
         {articles.map((article) => {
-            return <li key={article.article_id}>
+            return <li key={article.article_id} className="listItem">
                 Topic: {article.topic}.  
                 <Link to={`/articles/${article.article_id}` } className="Link">
                 "{article.title}"
