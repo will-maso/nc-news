@@ -34,7 +34,7 @@ const Login = () => {
         setUser(localStorage.getItem("user"))
     })
 
-    if (user) {
+    if (localStorage.getItem("user")) {
         localStorage.setItem("user", user)
         return <p>Successful login press the home button to view the list of all articles, where you can now add/remove comments and upVote articles as you please</p>
     }
