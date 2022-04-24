@@ -30,14 +30,11 @@ const Login = () => {
         })
     }, [err, user])
 
-    if (localStorage.getItem("user")) {
+    if (localStorage.getItem("user") !== "null") {
         localStorage.setItem("user", user)
         return <p>Successful login press the home button to view the list of all articles, where you can now add/remove comments and upVote articles as you please</p>
     }
-    
-    // useEffect(() => {
-    //     setUser(localStorage.getItem("user"))
-    // })
+   
     return <section>
         {err && err}
     <br></br>
