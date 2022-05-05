@@ -20,7 +20,6 @@ const Login = () => {
     const changeHandler = (e) => {
         setNewUser(e.target.value)
     }
-
     useEffect(() => {
         localStorage.setItem("user", user)
         axios.get(`https://news-williammason.herokuapp.com/api/users`).then((response) => {
@@ -29,8 +28,9 @@ const Login = () => {
             setErr(err.response.data)
         })
     }, [err, user])
-
-    if (localStorage.getItem("user") !== "null") {
+    
+    if (localStorage.getItem("user") !== "null" && localStorage.getItem("user").length !== 0) {
+        console.log(localStorage.getItem("user"))
         localStorage.setItem("user", user)
         return <p>Successful login press the home button to view the list of all articles, where you can now add/remove comments and upVote articles as you please</p>
     }
